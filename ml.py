@@ -8,7 +8,10 @@ from sklearn.tree import DecisionTreeClassifier
 import warnings
 warnings.filterwarnings("ignore")
 from sklearn.preprocessing import StandardScaler, LabelEncoder
+<<<<<<< HEAD:ml.py
 
+=======
+>>>>>>> 2c4916bc640cb0183dcfc2e9cf033482a47af4bf:streamlit/ml.py
 from lightgbm import LGBMClassifier
 
 test = pd.read_csv('C:\Users\user\Desktop\ds_course\proj1\source\test.csv', sep=",")
