@@ -9,7 +9,7 @@ warnings.filterwarnings("ignore")
 st.title('🔍Краткий анализ по :green-background[целевому признаку] ')
 st.write('Анализ ключевых факторов, влияющих на удовлетворенность пассажиров, для выявления областей улучшения и повышения общего уровня удовлетворенности')
 
-test = pd.read_csv("source\test.csv")
+test = pd.read_csv("source\\test.csv")
 train = pd.read_csv("source\train.csv")
 data = pd.concat([test, train])
 data = data.sample(129880).reset_index().drop(['index', 'id'], axis=1)
