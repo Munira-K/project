@@ -9,4 +9,4 @@ pages = [
     st.Page('metrics2.py', title = 'Результаты ⚖️')
 ]
 pg_h = st.navigation(pages)
-# pg_h.run()
+pg_h.run()
