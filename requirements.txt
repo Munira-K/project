@@ -3,3 +3,4 @@ plotly
 matplotlib
 scikit-learn
 pandas
+seaborn
