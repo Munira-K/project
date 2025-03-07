@@ -59,18 +59,17 @@ lgbm_model = LGBMClassifier(verbose=-200)
 lgbm_model.fit(X_train, y_train)
 
 
-# Интерфейс Streamlit
 st.title("✈️ Прогноз уровня комфорта пассажиров")
 st.write('''На этой странице представлены модели которые предсказывают, будет ли пассажир удовлетворен **Satisfied** или нейтрален/неудовлетворен **Neutral or Dissatisfied**''')
 
-# Отображение исходных данных
+
 with st.expander('Data'):
     st.write("X")
     st.dataframe(X)
     st.write("y")
     st.dataframe(y)
 
-# Боковая панель для ввода данных
+
 with st.sidebar:
     st.header("Введите признаки: ")
     
@@ -84,15 +83,14 @@ with st.sidebar:
     checkin_service = st.number_input('Checkin service (0-5)', min_value=0, max_value=5, value=3)
     food_and_drink = st.number_input('Food and drink (0-5)', min_value=0, max_value=5, value=3)
     
-    # Используем st.selectbox для выбора типа путешествия
     type_of_travel = st.selectbox('Type of Travel', ['Business travel', 'Personal Travel'])
 
 
-# Преобразование типа путешествия в числовой формат
+
 type_of_travel_mapping = {'Business travel': 1, 'Personal Travel': 0}
 type_of_travel_encoded = type_of_travel_mapping[type_of_travel]
 
-# Создание массива для предсказания
+
 new = np.array([[
     seat_comfort,
     on_board_service,
@@ -105,20 +103,20 @@ new = np.array([[
     type_of_travel_encoded
 ]])
 
-# Масштабирование данных
+
 new_scaled = scaler.transform(new)
 
-# Предсказания моделей
+
 pred_logistic = logistic.predict(new_scaled)[0]
 pred_knn = knn.predict(new_scaled)[0]
 pred_des_tree = des_tree.predict(new_scaled)[0]
 pred_lgbm = lgbm_model.predict(new_scaled)[0]
 
-# Функция для отображения результата
+
 def mapping(pred):
     return "Satisfied 😊" if pred == 1 else "Neutral or Dissatisfied 😶‍🌫️"
 
-# Отображение предсказаний
+
 st.subheader("🔮 Предсказания моделей:")
 st.write(f"**Logistic Regression:** {mapping(pred_logistic)}")
 st.write(f"**K-Nearest Neighbors:** {mapping(pred_knn)}")
