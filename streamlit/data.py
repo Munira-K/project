@@ -5,7 +5,7 @@ import warnings
 
 
 def load_data():
-    test = pd.read_csv('proj1/source/test.csv')
+    test = pd.read_csv('proj1\source\test.csv')
     train = pd.read_csv('proj1/source/train.csv')
     data = pd.concat([test, train])
     data = data.sample(129880).reset_index().drop(['index', 'id'], axis=1)
