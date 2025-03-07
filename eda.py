@@ -5,13 +5,15 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import warnings
 warnings.filterwarnings("ignore")
-from data import load_data
-
 
 st.title('🔍Краткий анализ по :green-background[целевому признаку] ')
 st.write('Анализ ключевых факторов, влияющих на удовлетворенность пассажиров, для выявления областей улучшения и повышения общего уровня удовлетворенности')
 
-data = load_data()
+test = pd.read_csv('C:\Users\user\Desktop\ds_course\proj1\source\test.csv', sep=",")
+train = pd.read_csv('C:\Users\user\Desktop\ds_course\proj1\source\train.csv', sep=",")
+data = pd.concat([test, train])
+data = data.sample(129880).reset_index().drop(['index', 'id'], axis=1)
+data = data.drop(['Unnamed: 0', 'Arrival Delay in Minutes', 'Departure Delay in Minutes'], axis=1)
 
 satisfaction_counts = data['satisfaction'].value_counts(normalize=True) * 100
 satisfaction_df = satisfaction_counts.reset_index()
